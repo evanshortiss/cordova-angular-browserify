@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.feedhenry.myapp" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <name>MyApp</name>
+    <description>
+        A sample Apache Cordova application that responds to the deviceready event.
+    </description>
+    <author email="dev@cordova.apache.org" href="http://cordova.io">
+        Apache Cordova Team
+    </author>
+
+    <!-- App entry point when webview is loaded -->
+    <content src="index.html" />
+
+    <!-- We need access to remote services -->
+    <access origin="*" />
+
+    <!-- Fullscreen is not necessary usually, and can 
+    be a pain when dealing with positioning and keyboard -->
+    <preference name="Fullscreen" value="false" />
+
+    <!-- We don't want overscroll to be possible
+    as it provides poor UX -->
+    <preference name="WebViewBounce" value="false" />
+    <preference name="DisallowOverscroll" value="true" />
+
+    <!-- Sensible default -->
+    <preference name="Orientation" value="portrait" />
+</widget>

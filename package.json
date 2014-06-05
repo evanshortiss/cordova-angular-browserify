@@ -1,0 +1,22 @@
+{
+  "name": "angular-cordova-workflow",
+  "version": "0.0.0",
+  "description": "Template for writing angular applications in a modular fashion with a neat workflow.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Evan Shortiss",
+  "license": "MIT",
+  "devDependencies": {
+    "grunt": "~0.4.5",
+    "angular": "~1.2.16",
+    "browserify": "~4.1.8",
+    "grunt-browserify": "~2.1.0",
+    "grunt-browser-sync": "~0.9.1",
+    "grunt-contrib-watch": "~0.6.1",
+    "grunt-lintspaces": "^0.5.1",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-browser-sync": "^0.9.1",
+    "cordova": "~3.5.0-0.2.4"
+  }
+}
