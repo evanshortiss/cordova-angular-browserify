@@ -6,8 +6,8 @@ Cordova Angular Workflow
 * Grunt used for automation.
 * All dependecies managed via NPM.
 * Sensible/common Cordova defaults applied.
-* Browserified Automatigacally.
-* Code Quality via JSHint and Lintspaces.
+* Browserified Automagically.
+* Code Quality via JSHint, Lintspaces and Column Width Checks.
 * EditorConfig file included.
 * Localised Cordova version setup.
 
@@ -38,8 +38,7 @@ mismatch.
 
 ### Speed
 Another neat feature I want to encourage as part of this project is inlining 
-templates within your AngularJS application. Currently you should do this using 
-brfs as shown in the example below. This removes AJAX/File calls when your 
-application is running and will improve performance. It would be nice to 
-dynamically accomplish this without brfs by maybe using a browserify transform 
-instead.
+templates within your AngularJS application. You should do this using 
+brfs as shown in the example below, Browserify and the Grunt build will handle
+the rest. This removes AJAX/File calls when your application is running and 
+`will improve performance.

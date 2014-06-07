@@ -1,7 +1,9 @@
 node_modules
+bower_components
 .fhc-debug.log
 .npm-debug.log
 .DS_Store
+.idea
 
 
 # Xcode Ignores

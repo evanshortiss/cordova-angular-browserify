@@ -7,7 +7,7 @@ module.exports = function(grunt) {
 
 
     watch: {
-      files: ['www/**/*', '!www/bundle.js'],
+      files: ['www/**/*', '!www/js/bundle.js'],
       tasks: ['build'],
       options: {
         'event': ['all']
@@ -31,9 +31,21 @@ module.exports = function(grunt) {
     browserify: {
       dist: {
         files: {
-          './www/js/bundle.js': ['./www/**/*'],
+          './www/js/bundle.js': ['./www/**/*.js', '!./www/js/bundle.js'],
+        },
+        options: {
+          bundleOptions: {
+            'entry': './www/js/app.js',
+            'transform': 'angularify'
+          }
         }
       }
+    },
+
+    column_lint: {
+      files: {
+        src: ["./www/**/*", '!./www/js/bundle.js']
+      },
     },
 
     jshint: {
@@ -80,7 +92,7 @@ module.exports = function(grunt) {
 
     lintspaces: {
       javascript: {
-        src: ['./www/**/*.js', '!./www/bundle.js'],
+        src: ['./www/**/*.js', '!./www/js/bundle.js'],
         options: {
           // TODO: Reference editorconfig
           indentation: 'spaces',
@@ -95,6 +107,7 @@ module.exports = function(grunt) {
 
   grunt.loadNpmTasks('grunt-browserify');
   grunt.loadNpmTasks('grunt-lintspaces');
+  grunt.loadNpmTasks('grunt-column-lint');
   grunt.loadNpmTasks('grunt-browser-sync');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-jshint');
