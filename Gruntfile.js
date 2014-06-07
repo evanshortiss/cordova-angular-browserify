@@ -28,14 +28,30 @@ module.exports = function(grunt) {
       }
     },
 
-    browserify: {
-      files: {
-        './www/js/bundle.js': ['./www/**/*.js', '!./www/js/bundle.js'],
+    // TODO: Investgiate why transform fails...
+    // browserify: {
+    //   debug: {
+    //     files: {
+    //       './www/js/bundle.js': ['./www/**/*.js', '!./www/js/bundle.js'],
+    //     },
+    //     options: {
+    //       bundleOptions: {
+    //         // 'debug': true,
+    //         'entry': './www/js/app.js',
+    //         'transform': ['brfs'],
+    //       }
+    //     }
+    //   }
+    // },
+
+    shell: {
+      'browserify-debug': {
+        command: 'browserify ./www/js/**/*.js -t brfs -e ./www/js/app.js ' +
+            ' -o www/js/bundle.js -d'
       },
-      options: {
-        bundleOptions: {
-          'entry': './www/js/app.js'
-        }
+      'browserify-dist': {
+        command: 'browserify ./www/js/**/*.js -t brfs -e ./www/js/app.js ' +
+          ' -o www/js/bundle.js'
       }
     },
 
@@ -81,6 +97,7 @@ module.exports = function(grunt) {
     }
   });
 
+  grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-browserify');
   grunt.loadNpmTasks('grunt-lintspaces');
   grunt.loadNpmTasks('grunt-column-lint');
@@ -90,7 +107,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
 
 
-  grunt.registerTask('build', ['browserify', 'bowerInstall']);
+  grunt.registerTask('build', ['shell:browserify-debug', 'bowerInstall']);
   grunt.registerTask('format', ['lintspaces', 'jshint']);
   grunt.registerTask('serve', ['browserSync', 'watch']);
 };

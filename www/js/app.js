@@ -1,10 +1,10 @@
 'use strict';
 
-var controllers = require('./controllers')
-  , directives = require('./directives')
-  , constants = require('./constants')
-  , factories = require('./factories')
+var constants = require('./constants')
   , services = require('./services')
+  , factories = require('./factories')
+  , controllers = require('./controllers')
+  , directives = require('./directives')
   , filters = require('./filters');
 
 
@@ -13,10 +13,11 @@ function config () {
 }
 
 module.exports = angular.module('MyApp', [
-    controllers.name,
-    directives.name,
-    constants.name,
-    factories.name,
-    services.name,
-    filters.name
-  ]).config(config);
+  'FH', // Angular FH shims,
+  constants.name,
+  services.name,
+  factories.name,
+  controllers.name,
+  directives.name,
+  filters.name
+]).config(config);

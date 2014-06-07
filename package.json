@@ -18,6 +18,8 @@
     "grunt-contrib-jshint": "^0.10.0",
     "cordova": "~3.5.0-0.2.4",
     "grunt-column-lint": "~0.2.0",
-    "grunt-bower-install": "~1.6.0"
+    "grunt-bower-install": "~1.6.0",
+    "brfs": "~1.1.1",
+    "grunt-shell": "~0.7.0"
   }
 }

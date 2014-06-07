@@ -1,4 +1,4 @@
 'use strict';
 
-module.exports = angular.module('MyApp.directives', []);
-  // .directive('customTag', require('./customTag.js'));
+module.exports = angular.module('MyApp.directives', [])
+  .directive('randomNumber', require('./RandomNumber'));
