@@ -3,21 +3,32 @@
 
 var controllers = require('./controllers')
   , directives = require('./directives')
+  , constants = require('./constants')
   , factories = require('./factories')
   , services = require('./services')
   , filters = require('./filters')
 
+
+function config () {
+  console.log('App config called!');
+}
+
 module.exports = angular.module('MyApp', [
     controllers.name,
     directives.name,
+    constants.name,
     factories.name,
     services.name,
     filters.name
-  ]).config(function () {
-  console.log('Running app');
-});
+  ]).config(config);
 
-},{"./controllers":3,"./directives":4,"./factories":5,"./filters":6,"./services":7}],2:[function(require,module,exports){
+},{"./constants":2,"./controllers":4,"./directives":5,"./factories":6,"./filters":7,"./services":8}],2:[function(require,module,exports){
+'use strict';
+
+module.exports = angular.module('MyApp.constants', []);
+  // .constant('API_TOKEN', '123ABC123ABC');
+
+},{}],3:[function(require,module,exports){
 'use strict';
 
 module.exports = function ($scope, $interval) {
@@ -28,34 +39,34 @@ module.exports = function ($scope, $interval) {
   }, 999);
 };
 
-},{}],3:[function(require,module,exports){
+},{}],4:[function(require,module,exports){
 'use strict';
 
 module.exports = angular.module('MyApp.controllers', [])
   .controller('Main', require('./Main'));
 
-},{"./Main":2}],4:[function(require,module,exports){
+},{"./Main":3}],5:[function(require,module,exports){
 'use strict';
 
 module.exports = angular.module('MyApp.directives', [])
   // .directive('customTag', require('./customTag.js'));
 
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 'use strict';
 
 module.exports = angular.module('MyApp.factories', [])
   // .service('customFactory', require('./customFactory.js'));
 
-},{}],6:[function(require,module,exports){
+},{}],7:[function(require,module,exports){
 'use strict';
 
 module.exports = angular.module('MyApp.filters', []);
   // .filter('customFilter', require('./customFilter.js'));
 
-},{}],7:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 'use strict';
 
 module.exports = angular.module('MyApp.services', [])
   // .service('customService', require('./customService.js'));
 
-},{}]},{},[2,3,4,5,6,7,1])
+},{}]},{},[1,2,3,4,5,6,7,8])

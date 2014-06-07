@@ -29,64 +29,40 @@ module.exports = function(grunt) {
     },
 
     browserify: {
-      dist: {
-        files: {
-          './www/js/bundle.js': ['./www/**/*.js', '!./www/js/bundle.js'],
-        },
-        options: {
-          bundleOptions: {
-            'entry': './www/js/app.js',
-            'transform': 'angularify'
-          }
+      files: {
+        './www/js/bundle.js': ['./www/**/*.js', '!./www/js/bundle.js'],
+      },
+      options: {
+        bundleOptions: {
+          'entry': './www/js/app.js'
         }
       }
     },
 
     column_lint: {
       files: {
-        src: ["./www/**/*", '!./www/js/bundle.js']
+        src: ['./www/**/*', '!./www/js/bundle.js']
       },
     },
 
+    bowerInstall: {
+      target: {
+
+        // Point to the files that should be updated when
+        // you run `grunt bower-install`
+        src: [
+          './www/index.html'
+        ],
+
+        dependencies: true,
+        devDependencies: false
+      }
+    },
+
     jshint: {
-      src: ['Gruntfile.js', './www/**/*.js'],
+      src: ['Gruntfile.js', './www/**/*.js', '!./www/js/bundle.js'],
       options: {
-        globals: {
-          describe: true,
-          it: true,
-          before: true,
-          beforeEach: true
-        },
-        curly: true,
-        camelcase: false,
-        evil: false,
-        browser: true,
-        trailing: true,
-        sub: true,
-        eqeqeq: false,
-        eqnull: true,
-        devel: false,
-        smarttabs: false,
-        laxbreak: false,
-        laxcomma: true,
-        jquery: false,
-        loopfunc: true,
-        indent: 2,
-        bitwise: true,
-        noarg: true,
-        noempty: true,
-        nonew: true,
-        undef: true,
-        boss: true,
-        node: true,
-        newcap: true,
-        quotmark: 'single',
-        unused: true,
-        strict: true,
-        maxparams: 5,
-        maxdepth: 5,
-        maxstatements: 20,
-        maxcomplexity: 10
+        jshintrc: './jshintrc.js'
       }
     },
 
@@ -109,11 +85,12 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-lintspaces');
   grunt.loadNpmTasks('grunt-column-lint');
   grunt.loadNpmTasks('grunt-browser-sync');
+  grunt.loadNpmTasks('grunt-bower-install');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-jshint');
 
 
-  grunt.registerTask('build', ['browserify:dist']);
+  grunt.registerTask('build', ['browserify', 'bowerInstall']);
   grunt.registerTask('format', ['lintspaces', 'jshint']);
   grunt.registerTask('serve', ['browserSync', 'watch']);
 };
