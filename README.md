@@ -2,6 +2,7 @@ Cordova Angular Workflow
 ========================
 
 * [Grunt](http://gruntjs.com/) used for automation.
+* Uses [Ionic](http://ionicframework.com/) for out of the box components.
 * Bundled using [Browserify](http://browserify.org/)!
 * All dependencies managed via [npm](https://www.npmjs.org/) or 
 [Bower](http://bower.io/). npm is always the preference in a 
@@ -79,7 +80,7 @@ inlines the template expects the format *__dirname + '/some/path.extname'* or
 *__filename + '/some/path.extname'*. 
 
 
-```
+```javascript
 'use strict';
 
 var fs = require('fs');
