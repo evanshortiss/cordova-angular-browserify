@@ -45,6 +45,9 @@ module.exports = function(grunt) {
     // },
 
     shell: {
+      'bower-install': {
+        command: 'bower install'
+      },
       'browserify-debug': {
         command: 'browserify ./www/js/**/*.js -t brfs -e ./www/js/app.js ' +
             ' -o www/js/bundle.js -d'
@@ -57,11 +60,11 @@ module.exports = function(grunt) {
 
     column_lint: {
       files: {
-        src: ['./www/**/*', '!./www/js/bundle.js']
-      },
+        src: ['./www/**/*.js', '!./www/js/bundle.js']
+      }
     },
 
-    bowerInstall: {
+    wiredep: {
       target: {
 
         // Point to the files that should be updated when
@@ -97,17 +100,20 @@ module.exports = function(grunt) {
     }
   });
 
+
   grunt.loadNpmTasks('grunt-shell');
+  grunt.loadNpmTasks('grunt-wiredep');
   grunt.loadNpmTasks('grunt-browserify');
   grunt.loadNpmTasks('grunt-lintspaces');
   grunt.loadNpmTasks('grunt-column-lint');
+  grunt.loadNpmTasks('grunt-contrib-less');
   grunt.loadNpmTasks('grunt-browser-sync');
-  grunt.loadNpmTasks('grunt-bower-install');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-jshint');
 
 
-  grunt.registerTask('build', ['shell:browserify-debug', 'bowerInstall']);
+  grunt.registerTask('build', ['shell:bower-install', 'shell:browserify-debug',
+   'wiredep']);
   grunt.registerTask('format', ['lintspaces', 'jshint']);
   grunt.registerTask('serve', ['browserSync', 'watch']);
 };

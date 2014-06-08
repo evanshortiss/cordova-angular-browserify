@@ -7,17 +7,27 @@ var constants = require('./constants')
   , directives = require('./directives')
   , filters = require('./filters');
 
+function run ($ionicPlatform) {
+  console.log('App run called!');
 
-function config () {
-  console.log('App config called!');
+  $ionicPlatform.ready(function() {
+    if(window.StatusBar) {
+      // org.apache.cordova.statusbar required
+      StatusBar.styleDefault();
+    }
+  });
 }
 
 module.exports = angular.module('MyApp', [
-  'FH', // Angular FH shims,
+  // Ionic
+  'ionic',
+  // Angular FH API shim
+  'FH',
+
+  filters.name,
   constants.name,
   services.name,
   factories.name,
   controllers.name,
-  directives.name,
-  filters.name
-]).config(config);
+  directives.name
+]).run(run);

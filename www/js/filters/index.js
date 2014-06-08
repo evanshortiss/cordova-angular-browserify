@@ -1,4 +1,5 @@
 'use strict';
 
-module.exports = angular.module('MyApp.filters', []);
-  // .filter('customFilter', require('./customFilter.js'));
+// Require all filters here
+module.exports = angular.module('MyApp.filters', [])
+  .filter('formatUserName', require('./FormatUserName'));
