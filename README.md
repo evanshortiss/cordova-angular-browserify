@@ -116,3 +116,29 @@ entering the following in a terminal:
 ```
 npm install -g bower less@1.7.0
 ```
+
+## Common Tasks
+
+### Copy Working www Files to Cordova Projects
+
+```
+./cordova prepare [ios/android]
+```
+
+### Compile Current Projects
+```
+./cordova compile [ios/android]
+```
+
+### Copy Files and Build
+```
+./cordova build [ios/android]
+```
+
+### Emulate Platforms
+These functions are provided by Cordova. In the root directory use the 
+following commands.
+
+```
+./cordova emulate [ios/android]
+```

@@ -7,7 +7,8 @@ module.exports = function(grunt) {
 
 
     watch: {
-      files: ['www/**/*', '!www/js/bundle.js'],
+      files: ['./www/**/*', '!./www/js/bundle.js',
+        '!./www/bower_components/**'],
       tasks: ['build'],
       options: {
         'event': ['all']
@@ -22,13 +23,13 @@ module.exports = function(grunt) {
         options: {
           watchTask: true,
           server: {
-            baseDir: 'www'
+            baseDir: './www'
           }
         }
       }
     },
 
-    // TODO: Investgiate why transform fails...
+    // TODO: Investgiate why transform fails...using grunt-shel instead for now
     // browserify: {
     //   debug: {
     //     files: {
@@ -66,9 +67,6 @@ module.exports = function(grunt) {
 
     wiredep: {
       target: {
-
-        // Point to the files that should be updated when
-        // you run `grunt bower-install`
         src: [
           './www/index.html'
         ],
