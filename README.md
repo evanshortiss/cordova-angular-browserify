@@ -1,4 +1,4 @@
-Cordova Angular Workflow
+CAB (Cordova Angular Browserify) Workflow
 ========================
 
 * [Grunt](http://gruntjs.com/) used for automation.
@@ -16,6 +16,11 @@ browserified project to stick to a CommonJS style.
 configure editors.
 * Localised Cordova version setup to avoid version mismatches.
 
+## Current Project Issues
+* The fh-js-sdk is currently not available through npm and the bower version 
+doesn't contain the _/dist_ folder. See this 
+[ticket](https://github.com/feedhenry/fh-js-sdk/pull/86)
+* grunt-browserify isn't correctly applying transforms. 
 
 ## Why?
 
@@ -118,6 +123,13 @@ npm install -g bower less@1.7.0
 ```
 
 ## Common Tasks
+Note that all these commands are using the locally installed version of Cordova.
+To change the Cordova version being use just run:
+
+```
+npm install cordova@[VERSION] --save-dev
+```
+
 
 ### Copy Working www Files to Cordova Projects
 
@@ -142,3 +154,9 @@ following commands.
 ```
 ./cordova emulate [ios/android]
 ```
+
+## Debugging 
+To make debugging this project easier you should enable source maps in your dev 
+tools. This will allow you to inspect the source files in Chrome as usual on 
+the _Sources_ tab despite the fact that the files and concatenated using 
+Browserify. Much win!
