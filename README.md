@@ -23,9 +23,9 @@ configure editors.
 doesn't contain the _/dist_ folder. See this 
 [ticket](https://github.com/feedhenry/fh-js-sdk/pull/86)
 * grunt-browserify isn't correctly applying transforms. Current fallback is to 
-use grunt-shell.
-* Testing folder is currently in development. The goal is that it will 
-automatically run tests for any JS file added to it by running *grunt test*.
+use grunt-shell to invoke Browserify.
+* If new client dependencies are added using bower we need to inject these 
+into the Karma conf file similar to index.html.
 
 ## Why?
 
