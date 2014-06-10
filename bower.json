@@ -19,6 +19,9 @@
     "ng-act": "~0.0.3",
     "ngCordova": "~0.1.1-alpha"
   },
+  "devDependencies": {
+    "angular-mocks": "1.2.12"
+  },
   "resolutions": {
     "angular": "1.2.12"
   },
