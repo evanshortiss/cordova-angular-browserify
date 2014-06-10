@@ -1,5 +1,5 @@
-CAB (Cordova Angular Browserify) Workflow
-========================
+Cordova-Angular-Browserify Workflow
+===================================
 
 * [Grunt](http://gruntjs.com/) used for automation.
 * Uses [Ionic](http://ionicframework.com/) for out of the box components.
@@ -16,11 +16,14 @@ browserified project to stick to a CommonJS style.
 configure editors.
 * Localised Cordova version setup to avoid version mismatches.
 
-## Current Project Issues
+## Current Project Issues / Tasks
 * The fh-js-sdk is currently not available through npm and the bower version 
 doesn't contain the _/dist_ folder. See this 
 [ticket](https://github.com/feedhenry/fh-js-sdk/pull/86)
-* grunt-browserify isn't correctly applying transforms. 
+* grunt-browserify isn't correctly applying transforms. Current fallback is to 
+use grunt-shell.
+* Testing folder is currently in development. The goal is that it will 
+automatically run tests for any JS file added to it by running *grunt test*.
 
 ## Why?
 
@@ -69,13 +72,14 @@ own wrappers. Bear in mind ngCordova is a _very_ young project and if
 functionality you'd like is missing then fork it, add the function and submit 
 a pull request!
 
-### Speed
+### A Single JavaScript Bundle
 Part of the reason for using Browserify in this project is for speed 
 enhancements. Compiling all files into a single bundle will improve application 
 load time and performance. For release builds the bundle file can have source 
 maps disabled and also be uglified to further improve performance and reduce 
 the disk space required by the compiled project.
 
+### Inlined Templates for Improved Performance
 Another neat feature I want to encourage as part of this project is inlining 
 templates within your AngularJS application. You should do this using 
 _brfs_ as shown in the example below, Browserify and the Grunt build will 

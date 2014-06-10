@@ -51,11 +51,11 @@ module.exports = function(grunt) {
       },
       'browserify-debug': {
         command: 'browserify ./www/js/**/*.js -t brfs -e ./www/js/app.js ' +
-            ' -o www/js/bundle.js -d'
+          '-o www/js/bundle.js -d'
       },
       'browserify-dist': {
         command: 'browserify ./www/js/**/*.js -t brfs -e ./www/js/app.js ' +
-          ' -o www/js/bundle.js'
+          '-o www/js/bundle.js'
       }
     },
 
@@ -66,7 +66,7 @@ module.exports = function(grunt) {
     },
 
     wiredep: {
-      target: {
+      debug: {
         src: [
           './www/index.html'
         ],
@@ -95,10 +95,17 @@ module.exports = function(grunt) {
           ignores: ['js-comments']
         }
       }
-    }
+    },
+
+    karma: {
+      browsers: {
+        configFile: './karma.conf.js'
+      }
+    },
   });
 
 
+  grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-wiredep');
   grunt.loadNpmTasks('grunt-browserify');
@@ -109,9 +116,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-jshint');
 
-
+  grunt.registerTask('test', ['build', 'karma']);
   grunt.registerTask('build', ['shell:bower-install', 'shell:browserify-debug',
-   'wiredep']);
+    'wiredep:debug']);
   grunt.registerTask('format', ['lintspaces', 'jshint']);
   grunt.registerTask('serve', ['browserSync', 'watch']);
 };
