@@ -10,6 +10,8 @@ browserified project to stick to a CommonJS style.
 * Sensible and/or common Cordova defaults applied.
 * Uses [ngCordova](http://ngcordova.com/) to ensure sensible and stable
  Cordova plugin use.
+* Test structure for AngularJS is already setup and ready.
+* Run tests in browser with Karma or from a webserver on your machine!
 * Code Quality via [JSHint](http://www.jshint.com/docs/), 
 [Lintspaces](lintspaces) and Column Width Checks.
 * [EditorConfig](http://editorconfig.org/) file included to automatically 
