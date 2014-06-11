@@ -161,6 +161,28 @@ following commands.
 ./cordova emulate [ios/android]
 ```
 
+
+## Grunt Tasks
+These are the current grunt tasks built into the Gruntfile.
+
+### test
+Running this task will automatically open a browser and run all tests in the 
+*tests* directory.
+
+### build
+This task will install all dependencies if required, browserify all source 
+code into a single bundle, and inject bower dependencies into index.html.
+
+### format
+Run code quality checks to find syntax errors, style issues, and highlight 
+lines over 80 characters.
+
+### serve
+Serve code for local debugging. The code is "watched" meaning if any changes 
+are made the 'build' task will be run and the code running in your browser 
+will update without the need for a refresh.
+
+
 ## Debugging 
 To make debugging this project easier you should enable source maps in your dev 
 tools. This will allow you to inspect the source files in Chrome as usual on 
