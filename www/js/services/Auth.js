@@ -10,6 +10,10 @@ module.exports = function (Act) {
    * @param {Function}  callback
    */
   this.login = function (username, password, callback) {
+    if (!username || username === '' || !password || password === '') {
+      return callback('Please enter username and password.', null);
+    }
+
     Act.callFn('login', {
       u: username,
       p: password
