@@ -47,6 +47,9 @@ module.exports = function(grunt) {
       'browserify-release': {
         command: 'browserify ./www_dev/js/**/*.js -e ./www_dev/js/app.js ' +
           '-o ./www_dev/bundle.js'
+      },
+      'cordova': {
+        command: 'cordova build'
       }
     },
 
@@ -105,17 +108,22 @@ module.exports = function(grunt) {
 
     cssmin: {
       // Combine our own CSS files for debug builds
-      combine: {
-        files: {
-          'www_dev/bundle.css': ['www_dev/css/**/*.css']
+      debug: {
+        minify: {
+          src: [
+            'www_dev/css/**/*.css'
+          ],
+          dest: 'www_dev/bundle.css',
         }
       },
-      minify: {
-        src: [
-        '<%= dom_munger.data.cssFiles %>',
-          './www_dev/css/**/*.css'
-        ],
-        dest: 'www/bundle.css',
+      release: {
+        minify: {
+          src: [
+          '<%= dom_munger.data.cssFiles %>',
+            './www_dev/css/**/*.css'
+          ],
+          dest: 'www/bundle.css',
+        }
       }
     },
 
@@ -194,29 +202,34 @@ module.exports = function(grunt) {
 
 
   // Run all unit tests
-  grunt.registerTask('test', ['build:debug', 'karma']);
+  grunt.registerTask('test', ['prepare:debug', 'karma']);
 
   // Code quality checks
   grunt.registerTask('format', ['lintspaces', 'jshint', 'column_lint']);
 
   // Serve files and watch for changes
-  grunt.registerTask('serve', ['build:debug', 'browserSync', 'watch']);
+  grunt.registerTask('serve', ['prepare:debug', 'browserSync', 'watch']);
 
   // Build debug files for ./www
-  grunt.registerTask('build:debug', [
+  grunt.registerTask('prepare:debug', [
     'shell:bower-install',
     'shell:browserify-debug',
     'wiredep:all',
-    'cssmin:combine'
+    'cssmin:debug:minify'
   ]);
 
   // Build release files and write to /www
-  grunt.registerTask('build:release', [
+  grunt.registerTask('prepare:release', [
     'build:debug', // Debug src needs to be configured first
     'shell:browserify-release',
     'dom_munger:release',
     'uglify:release',
-    'cssmin:minify',
+    'cssmin:debug:minify',
     'copy:release'
+  ]);
+
+  grunt.registerTask('build', [
+    'prepare:release',
+    'shell:cordova'
   ]);
 };
