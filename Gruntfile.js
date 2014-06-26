@@ -183,7 +183,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-wiredep');
   grunt.loadNpmTasks('grunt-dom-munger');
-  grunt.loadNpmTasks('grunt-browserify');
   grunt.loadNpmTasks('grunt-lintspaces');
   grunt.loadNpmTasks('grunt-column-lint');
   grunt.loadNpmTasks('grunt-contrib-copy');

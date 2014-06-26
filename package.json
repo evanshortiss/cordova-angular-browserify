@@ -17,7 +17,6 @@
   "devDependencies": {
     "grunt": "~0.4.3",
     "browserify": "~4.1.8",
-    "grunt-browserify": "~2.1.0",
     "grunt-browser-sync": "^0.9.1",
     "grunt-contrib-watch": "~0.6.1",
     "grunt-lintspaces": "^0.5.1",
