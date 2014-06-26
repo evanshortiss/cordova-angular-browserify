@@ -167,11 +167,18 @@ These are the current grunt tasks built into the Gruntfile.
 
 ### test
 Running this task will automatically open a browser and run all tests in the 
-*tests* directory.
+*tests* directory using Karma.
 
-### build
+### prepare:[debug | release]
 This task will install all dependencies if required, browserify all source 
 code into a single bundle, and inject bower dependencies into index.html.
+
+If the release flag is used instead of debug then all CSS and JS are bundled 
+and the *www/* folder is updated.
+
+### build 
+Run prepare and copy all files from *www/* to added Cordova platforms and 
+compile. Basically *cordova build* with some extra sugar.
 
 ### format
 Run code quality checks to find syntax errors, style issues, and highlight 

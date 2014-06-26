@@ -56,7 +56,15 @@ module.exports = function(grunt) {
 
     column_lint: {
       files: {
-        src: ['./www_dev/**/*.js', '!./www_dev/js/bundle.js']
+        src: [
+          './www_dev/**/*.js',
+          './www_dev/**/*.css',
+          './www_dev/**/*.html',
+          '!./www_dev/index.html',
+          '!./www_dev/bundle.js',
+          '!./www_dev/bundle.css',
+          '!./www_dev/bower_components/**/*',
+        ]
       }
     },
 

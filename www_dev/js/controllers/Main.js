@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports = function ($scope, $interval, Auth, DEFAULT_USERS) {
+module.exports = function ($scope, $interval, $window, Auth, DEFAULT_USERS) {
   $scope.time = new Date().toJSON();
 
   $scope.users = DEFAULT_USERS;
@@ -10,10 +10,10 @@ module.exports = function ($scope, $interval, Auth, DEFAULT_USERS) {
   }, 999);
 
   $scope.login = function () {
-    Auth.login('', '', function (err, res) {
+    Auth.login('', '', function (err) {
       if (err) {
-        alert(err);
+        $window.alert(err);
       }
-    })
+    });
   };
 };
