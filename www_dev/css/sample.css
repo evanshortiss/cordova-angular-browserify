@@ -1,4 +1,5 @@
-random-number {
+random-number em {
 	font-family: Arial;
 	text-transform: uppercase;
+	color: red;
 }
