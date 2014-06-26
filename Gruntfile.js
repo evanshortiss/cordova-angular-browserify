@@ -41,12 +41,12 @@ module.exports = function(grunt) {
         command: 'bower install'
       },
       'browserify-debug': {
-        command: 'browserify ./www_dev/js/**/*.js -t brfs -e ./www_dev/js/app.js ' +
+        command: 'browserify ./www_dev/js/**/*.js -e ./www_dev/js/app.js ' +
           '-o ./www_dev/bundle.js -d'
       },
       'browserify-release': {
-        command: 'browserify ./www_dev/js/**/*.js -t brfs -e ./www_dev/js/app.js ' +
-          '-o ./www/bundle.js'
+        command: 'browserify ./www_dev/js/**/*.js -e ./www_dev/js/app.js ' +
+          '-o ./www_dev/bundle.js'
       }
     },
 
@@ -61,25 +61,24 @@ module.exports = function(grunt) {
     dom_munger: {
       release: {
         options: {
-          src: './www_dev/index.html',
           read: [{
-            selector: 'link',
-            attribute: 'href',
-            writeto: 'cssFiles',
-            isPath: true
-          }, {
             selector: 'script[src]',
             attribute: 'src',
             writeto: 'jsFiles',
             isPath: true
+          }, {
+            selector: 'link',
+            attribute: 'href',
+            writeto: 'cssFiles',
+            isPath: true
           }]
-        }
+        },
+        src: './www_dev/index.html'
       }
     },
 
 
     wiredep: {
-      //
       all: {
         src: [
           './www_dev/index.html'
@@ -90,8 +89,14 @@ module.exports = function(grunt) {
       }
     },
 
+
     jshint: {
-      src: ['Gruntfile.js', './www_dev/**/*.js', '!./www_dev/js/bundle.js'],
+      src: [
+        'Gruntfile.js',
+        './www_dev/**/*.js',
+        '!./www_dev/bundle.js',
+        '!./www_dev/bower_components/**/*.js'
+      ],
       options: {
         jshintrc: './jshintrc.js'
       }
@@ -102,14 +107,15 @@ module.exports = function(grunt) {
       // Combine our own CSS files for debug builds
       combine: {
         files: {
-          './www_dev/bundle.css': ['./www_dev/css/**/*.css']
+          'www_dev/bundle.css': ['www_dev/css/**/*.css']
         }
       },
-      // Minify bower and our own CSS for release
       minify: {
-        expand: true,
-        src: ['<%= dom_munger.data.cssFiles %>', './www_dev/css/**/*.css'],
-        dest: './www/bundle.css'
+        src: [
+        '<%= dom_munger.data.cssFiles %>',
+          './www_dev/css/**/*.css'
+        ],
+        dest: 'www/bundle.css',
       }
     },
 
@@ -117,15 +123,26 @@ module.exports = function(grunt) {
     uglify: {
       // Create release JS from script tags and browserified JS bundle
       release: {
-        src:['<%= dom_munger.data.jsFiles %>', './www_dev/bundle.js'],
-        dest: './www/bundle.js'
+        // mangle: true,
+        options: {
+          beautify: false,
+          compress: true,
+          mangle: false
+        },
+        files: {
+          './www/bundle.js': '<%= dom_munger.data.jsFiles %>'
+        }
       }
     },
 
 
     lintspaces: {
       javascript: {
-        src: ['./www_dev/**/*.js', '!./www_dev/js/bundle.js'],
+        src: [
+          './www_dev/**/*.js',
+          '!./www_dev/bower_components/**/*.js',
+          '!./www_dev/bundle.js'
+        ],
         options: {
           // TODO: Reference editorconfig
           indentation: 'spaces',
@@ -141,18 +158,14 @@ module.exports = function(grunt) {
     copy: {
       release: {
         files: [{
+          cwd: './www_dev/',
           src: [
-            // Copy everything...
-            './www_dev/**',
-            // ... but don't copy these files as they'll be bundled
-            '!./www_dev/js/',
-            '!./www_dev/css/',
-            '!./www_dev/bundle.js',
-            '!./www_dev/bundle.css',
-            '!./www_dev/bower_components/'
+            // Anything you want copied to www goes here
+            './img/',
+            './fhconfig.json'
           ],
           dest: './www/',
-          expand: true
+          expand: true,
         }]
       }
     },
