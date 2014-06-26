@@ -9,5 +9,11 @@ module.exports = function ($scope, $interval, Auth, DEFAULT_USERS) {
     $scope.time = new Date().toJSON();
   }, 999);
 
-  $scope.login = Auth.login;
+  $scope.login = function () {
+    Auth.login('', '', function (err, res) {
+      if (err) {
+        alert(err);
+      }
+    })
+  };
 };
