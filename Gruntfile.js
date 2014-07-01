@@ -14,7 +14,7 @@ module.exports = function(grunt) {
         '!./www_dev/js/bundle.css',
         '!./www_dev/bower_components/**'
       ],
-      tasks: ['build:debug'],
+      tasks: ['prepare:debug'],
       options: {
         'event': ['all']
       }
