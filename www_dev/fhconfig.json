@@ -1,0 +1,7 @@
+{
+	"appid": "{{APP_ID}}}",
+	"appkey": "{{APP_API_KEY}}",
+	"connectiontag": "0.0.1",
+	"host": "{{APP_DOMAIN}}",
+	"projectid": "{{PROJECT_ID}}"
+}

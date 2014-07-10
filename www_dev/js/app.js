@@ -8,12 +8,10 @@ var constants = require('./constants')
   , filters = require('./filters');
 
 function run ($ionicPlatform) {
-  console.log('App run called!');
-
   $ionicPlatform.ready(function() {
     if(window.StatusBar) {
       // org.apache.cordova.statusbar required
-      StatusBar.styleDefault();
+      window.StatusBar.styleDefault();
     }
   });
 }
