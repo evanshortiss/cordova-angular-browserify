@@ -228,7 +228,7 @@ module.exports = function(grunt) {
 
   // Build release files and write to /www
   grunt.registerTask('prepare:release', [
-    'build:debug', // Debug src needs to be configured first
+    'prepare:debug', // Debug src needs to be configured first
     'shell:browserify-release',
     'dom_munger:release',
     'uglify:release',
