@@ -116,21 +116,11 @@ module.exports = function(grunt) {
 
     cssmin: {
       // Combine our own CSS files for debug builds
-      debug: {
-        minify: {
-          src: [
-            'www_dev/css/**/*.css'
-          ],
-          dest: 'www_dev/bundle.css',
-        }
-      },
-      release: {
-        minify: {
-          src: [
-          '<%= dom_munger.data.cssFiles %>',
-            './www_dev/css/**/*.css'
-          ],
-          dest: 'www/bundle.css',
+      combine: {
+        files: {
+          'www/bundle.css': [
+            '<%= dom_munger.data.cssFiles %>',
+          ]
         }
       }
     },
@@ -177,7 +167,7 @@ module.exports = function(grunt) {
           cwd: './www_dev/',
           src: [
             // Anything you want copied to www goes here
-            './img/',
+            './img/*',
             './fhconfig.json'
           ],
           dest: './www/',
@@ -223,7 +213,7 @@ module.exports = function(grunt) {
     'shell:bower-install',
     'shell:browserify-debug',
     'wiredep:all',
-    'cssmin:debug:minify'
+    'cssmin:combine'
   ]);
 
   // Build release files and write to /www
@@ -232,7 +222,7 @@ module.exports = function(grunt) {
     'shell:browserify-release',
     'dom_munger:release',
     'uglify:release',
-    'cssmin:debug:minify',
+    'cssmin:combine',
     'copy:release'
   ]);
 
